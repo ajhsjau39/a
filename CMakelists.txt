@@ -1,0 +1,29 @@
+cmake_minimum_required(VERSION 3.20)
+project(HorizonMac)
+
+set(CMAKE_CXX_STANDARD 20)
+
+file(GLOB_RECURSE SOURCES "src/*.cpp")
+
+add_library(HorizonMac SHARED ${SOURCES})
+
+target_include_directories(HorizonMac PRIVATE
+    src/
+    # Add your Luau include paths here
+)
+
+target_compile_options(HorizonMac PRIVATE
+    -O2
+    -arch x86_64
+)
+
+target_link_libraries(HorizonMac PRIVATE
+    # Add your Luau library here
+    "-framework Foundation"
+)
+
+set_target_properties(HorizonMac PROPERTIES
+    OUTPUT_NAME "HorizonMac"
+    SUFFIX ".dylib"
+    PREFIX ""
+)
