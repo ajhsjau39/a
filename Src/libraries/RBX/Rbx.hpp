@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <memory>
 #include <lua.h>
-#include "../HorizonMac/Src/Offsets.hpp"
+#include "../../Offsets.hpp"
 
 struct RobloxExtraSpace {
     uintptr_t Identity      = 0;
