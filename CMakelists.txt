@@ -2,24 +2,42 @@ cmake_minimum_required(VERSION 3.20)
 project(HorizonMac)
 
 set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_OSX_DEPLOYMENT_TARGET "10.13" CACHE STRING "" FORCE)
 
-file(GLOB_RECURSE SOURCES "src/*.cpp")
+set(LUAU_BUILD_CLI OFF CACHE BOOL "" FORCE)
+set(LUAU_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(LUAU_BUILD_ANALYSIS OFF CACHE BOOL "" FORCE)
+add_subdirectory(dependencies/vendor/luau)
+
+file(GLOB_RECURSE SOURCES "Src/*.cpp")
 
 add_library(HorizonMac SHARED ${SOURCES})
 
 target_include_directories(HorizonMac PRIVATE
-    src/
-    # Add your Luau include paths here
+    Src/
+    Src/libraries/RBX/
+    Src/libraries/RBX/Environment/
+    Src/libraries/RBX/Execution/
+    Src/libraries/RBX/TaskScheduler/
+    Src/libraries/RBX/TeleportHandler/
+    dependencies/vendor/luau/VM/include
+    dependencies/vendor/luau/VM/src
+    dependencies/vendor/luau/Compiler/include
+    dependencies/vendor/luau/Compiler/src
+    dependencies/vendor/luau/Common/include
+    dependencies/vendor/luau/CodeGen/include
+)
+
+target_link_libraries(HorizonMac PRIVATE
+    Luau.VM
+    Luau.Compiler
+    "-framework Foundation"
 )
 
 target_compile_options(HorizonMac PRIVATE
     -O2
     -arch x86_64
-)
-
-target_link_libraries(HorizonMac PRIVATE
-    # Add your Luau library here
-    "-framework Foundation"
+    -fvisibility=hidden
 )
 
 set_target_properties(HorizonMac PROPERTIES
