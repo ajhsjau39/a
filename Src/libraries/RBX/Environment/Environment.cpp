@@ -1,7 +1,7 @@
 #include "Environment.hpp"
 #include "../RBX.hpp"
 #include "../Execution/Execution.hpp"
-#include "../../Offsets.hpp"
+#include "../HorizonMac/Src/Offsets.hpp"
 #include <lua.h>
 #include <lstate.h>
 #include <lapi.h>

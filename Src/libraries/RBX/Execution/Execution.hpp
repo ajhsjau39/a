@@ -8,7 +8,7 @@
 #include <Luau/Compiler.h>
 #include <Luau/BytecodeUtils.h>
 #include "../RBX.hpp"
-#include "../../Offsets.hpp"
+#include "../HorizonMac/Src/Offsets.hpp"
 
 namespace RBX::Execution {
     std::string CompileScript(const std::string& script);

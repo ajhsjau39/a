@@ -3,7 +3,7 @@
 #include <lua.h>
 #include <lstate.h>
 #include "../RBX.hpp"
-#include "../../Offsets.hpp"
+#include "../HorizonMac/Src/Offsets.hpp"
 
 namespace RBX::TaskScheduler {
     uintptr_t GetDatamodel();
